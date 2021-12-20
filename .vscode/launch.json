@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Launch main program",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": ["--context=en1tstkk01aks"]
+        }
+    ]
+}
