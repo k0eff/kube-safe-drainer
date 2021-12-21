@@ -8,7 +8,7 @@ class Pod:
     namespace: str
     parent: PodParent
 
-    def __new__(self, name, namespace, parent: PodParent = None):
+    def __init__(self, name, namespace, parent: PodParent = None):
         self.name = name
         self.kind = "Pod"
         self.namespace = namespace

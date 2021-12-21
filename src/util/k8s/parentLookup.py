@@ -30,8 +30,8 @@ class ParentLookup:
                         each.metadata.owner_references[0].name,
                         namespace)
                     ret = PodParent(
-                        name = innerParent['name'],
-                        kind = innerParent['kind'],
+                        name = innerParent.name,
+                        kind = innerParent.kind,
                         namespace = namespace
                     )
                     return ret
