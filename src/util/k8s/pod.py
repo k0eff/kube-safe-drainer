@@ -16,3 +16,6 @@ class Pod:
 
     def setParent(self, parent: PodParent):
         self.parent = parent
+
+    def hasParent(self):
+        return hasattr(self, 'parent')
