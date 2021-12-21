@@ -1,6 +1,8 @@
 from kubernetes import client, config
 from argparse import ArgumentParser
 import sys
+from src.lib.k8s.k8s import checkIfContextExists, filterOutPodsInNodes, getNmspNames, raiseExceptionIfFalse
+from src.lib.validation.args import sanitizeArgs
 
 from src.util.k8s.parentLookup import ParentLookup
 from src.util.k8s.pod import Pod
@@ -8,26 +10,9 @@ from src.util.k8s.pod import Pod
 parser = ArgumentParser()
 parser.add_argument('--context', help='Use specific kubeconfig context')
 parser.add_argument('--nodes', help='Look for pods in these nodes', required=False)
-args = parser.parse_args()
+args = sanitizeArgs(parser.parse_args())
 
 
-
-
-def raiseExceptionIfFalse(val,msg):
-    if val == False: raise Exception(msg)
-
-def checkIfContextExists(ctxs, ctx):
-    for e in ctxs:
-        if e['name'] == ctx: return True
-    return False
-
-
-def getNmspNames(items):
-    all = []
-    for item in items:
-        if (bool(item._metadata) and bool(item._metadata.name)): all.append(item._metadata.name)
-        else: raise Exception('Error: BadNmspItem')
-    return all
 
 try:
 
@@ -39,7 +24,7 @@ try:
     v1ext = client.AppsV1Api(apiClient)
     nmspData = v1.list_namespace().items
     namespaces = getNmspNames(nmspData)
-    pods = v1.list_pod_for_all_namespaces()
+    pods = filterOutPodsInNodes(v1.list_pod_for_all_namespaces(), args.nodes)
     rsets = v1ext.list_replica_set_for_all_namespaces()
     statefulsets = v1ext.list_stateful_set_for_all_namespaces()
     daemonsets = v1ext.list_daemon_set_for_all_namespaces()

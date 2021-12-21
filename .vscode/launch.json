@@ -5,7 +5,7 @@
             "type": "python",
             "request": "launch",
             "module": "main",
-            "args": ["--context=en1tstkk01aks"]
+            "args": ["--context=en1tstkk01aks", "--nodes=aks-linuxstd01-40594472-vmss000000,aks-linuxstd01-40594472-vmss000000"]
         }
     ]
 }
