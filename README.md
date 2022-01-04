@@ -17,7 +17,10 @@ Because `kubectl drain` deletes pods and this might make an app unavailable
 python3 main.py drain --context=my_context --nodes=my_node1,my_node2 --pause=60
 
 # # Additional info
-Just write the following in the console:
-python3 main.py -h
-python3 main.py drain -h
-python3 main.py upgrade -h
+To get additional info, just write the following in the console:
+
+```python3 main.py -h```
+
+```python3 main.py drain -h```
+
+```python3 main.py upgrade -h```
