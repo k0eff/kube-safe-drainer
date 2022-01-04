@@ -1,11 +1,18 @@
 {
     "configurations": [
         {
-            "name": "Launch main program",
+            "name": "Drainer",
             "type": "python",
             "request": "launch",
             "module": "main",
-            "args": ["--context=en1tstkk01aks", "--nodes=aks-en1tstkk0101-40594472-vmss000000", "--pause=45"]
+            "args": ["drainer", "--context=en1tstkk01aks", "--nodes=aks-en1tstkk0101-40594472-vmss000000", "--pause=45"]
+        },
+        {
+            "name": "Other program",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": ["otherfunction"]
         }
     ]
 }

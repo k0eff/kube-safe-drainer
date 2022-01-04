@@ -13,12 +13,11 @@ Using the following procedure:
 # # Why?
 Because `kubectl drain` deletes pods and this might make an app unavailable
 
-# # Additional info
-usage: python3 main.py [-h] [--context CONTEXT] [--nodes NODES] [--pause PAUSE] [--uncordon UNCORDON]
+# # Examples
+python3 main.py drain --context=my_context --nodes=my_node1,my_node2 --pause=60
 
-optional arguments:
-  -h, --help           show this help message and exit
-  --context CONTEXT    Use specific kubeconfig context
-  --nodes NODES        Look for pods in these nodes
-  --pause PAUSE        How much to wait before uncordoning, applicable only if uncordoning is enabled
-  --uncordon UNCORDON  If enabled will finish by uncordoning the node(s). If set to false (default value) will leave the node cordoned which is expected to result in the node being halted by the autoscaler
+# # Additional info
+Just write the following in the console:
+python3 main.py -h
+python3 main.py drain -h
+python3 main.py upgrade -h

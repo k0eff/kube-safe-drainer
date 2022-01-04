@@ -8,13 +8,20 @@ from src.lib.validation.args import sanitizeArgs
 from src.util.k8s.parentLookup import ParentLookup
 from src.util.k8s.pod import Pod
 
-parser = ArgumentParser()
-parser.add_argument('--context', help='Use specific kubeconfig context')
-parser.add_argument('--nodes', help='Look for pods in these nodes', required=False)
-parser.add_argument('--pause', help='How much to wait before uncordoning, applicable only if uncordoning is enabled', required=False)
-parser.add_argument('--uncordon', help='If enabled will finish by uncordoning the node(s). If set to false (default value) will leave the node cordoned which is expected to result in the node being halted by the autoscaler', required=False)
-args = sanitizeArgs(parser.parse_args())
+parserMain = ArgumentParser()
+subparsers = parserMain.add_subparsers(title='mode')
 
+
+parserDrainer = subparsers.add_parser('drain', parents=[parserMain], add_help=False, description='drain mode', help='Use this to safely drain nodes')
+parserDrainer.add_argument('--context', help='Use specific kubeconfig context')
+parserDrainer.add_argument('--nodes', help='Look for pods in these nodes', required=False)
+parserDrainer.add_argument('--pause', help='How much to wait before uncordoning, applicable only if uncordoning is enabled', required=False)
+parserDrainer.add_argument('--uncordon', help='If enabled will finish by uncordoning the node(s). If set to false (default value) will leave the node cordoned which is expected to result in the node being halted by the autoscaler', required=False)
+
+
+parserUpgrade = subparsers.add_parser('upgrade', parents=[parserMain], add_help=False, description='upgrade mode', help='Use this to upgrade control plane and node pools')
+
+args = sanitizeArgs(parserMain.parse_args())
 
 
 try:
