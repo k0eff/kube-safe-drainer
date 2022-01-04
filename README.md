@@ -14,7 +14,8 @@ Using the following procedure:
 Because `kubectl drain` deletes pods and this might make an app unavailable
 
 # # Examples
-python3 main.py drain --context=my_context --nodes=my_node1,my_node2 --pause=60
+
+```python3 main.py drain --context=my_context --nodes=my_node1,my_node2 --pause=60```
 
 # # Additional info
 To get additional info, just write the following in the console:
