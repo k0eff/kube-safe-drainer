@@ -12,7 +12,7 @@ parser = ArgumentParser()
 parser.add_argument('--context', help='Use specific kubeconfig context')
 parser.add_argument('--nodes', help='Look for pods in these nodes', required=False)
 parser.add_argument('--pause', help='How much to wait before uncordoning, applicable only if uncordoning is enabled', required=False)
-parser.add_argument('--uncordon', help='Look for pods in these nodes', required=False)
+parser.add_argument('--uncordon', help='If enabled will finish by uncordoning the node(s). If set to false (default value) will leave the node cordoned which is expected to result in the node being halted by the autoscaler', required=False)
 args = sanitizeArgs(parser.parse_args())
 
 
