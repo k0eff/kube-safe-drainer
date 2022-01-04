@@ -1,18 +1,18 @@
 {
     "configurations": [
         {
-            "name": "Drainer",
+            "name": "Drain",
             "type": "python",
             "request": "launch",
             "module": "main",
-            "args": ["drainer", "--context=en1tstkk01aks", "--nodes=aks-en1tstkk0101-40594472-vmss000000", "--pause=45"]
+            "args": ["drain", "--context=en1tstkk01aks", "--nodes=aks-en1tstkk0101-40594472-vmss000000", "--pause=45"]
         },
         {
-            "name": "Other program",
+            "name": "Upgrade",
             "type": "python",
             "request": "launch",
             "module": "main",
-            "args": ["otherfunction"]
+            "args": ["upgrade"]
         }
     ]
 }
