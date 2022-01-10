@@ -19,7 +19,8 @@ parserDrainer.add_argument('--uncordon', help='If enabled will finish by uncordo
 
 
 parserUpgrade = subparsers.add_parser('upgrade', description='upgrade mode', help='Use this to upgrade control plane and node pools')
-
+parserUpgrade.add_argument('--subscription', help='Azure subscription')
+parserUpgrade.add_argument('-g', help='Resource group')
 
 # args = sanitizeArgs(parserMain.parse_args())
 args = parserMain.parse_args()
@@ -28,7 +29,7 @@ args = parserMain.parse_args()
 try:
     
     ctrls = Controllers()
-    ctrls.get(args.mode)(args)
+    ctrls.exec(args.mode)(args)
 
 except Exception as e:
     print("Fatal error occured. Giving up: ", e)

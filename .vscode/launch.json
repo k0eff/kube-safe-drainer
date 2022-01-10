@@ -12,7 +12,7 @@
             "type": "python",
             "request": "launch",
             "module": "main",
-            "args": ["upgrade"]
+            "args": ["upgrade", "-g=en1tstkk01aks-rg", "--subscription=e4363b21-2c35-48eb-a773-c84c8292dfa4"]
         }
     ]
 }
