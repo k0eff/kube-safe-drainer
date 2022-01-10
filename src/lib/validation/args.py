@@ -1,12 +1,14 @@
 import re
 
 def sanitizeArgs(args):
-    if bool(args.nodes): args.nodes = args.nodes.split(',')
-    else: args.nodes = []
-    
-    if not hasattr(args, 'pause') or not re.search('^[0-9]{1,}$', str(args.pause)): args.pause = 30
-    else: args.pause = int(args.pause)
+    if args.mode == 'drain': # TODO: provide better logic to check for modes
 
-    if not hasattr(args, 'uncordon') or len(str(args.uncordon)) > 0: args.uncordon = True
-    elif not str(args.uncordon) == 'false': args.uncordon = False
+        if bool(args.nodes): args.nodes = args.nodes.split(',')
+        else: args.nodes = []
+        
+        if not hasattr(args, 'pause') or not re.search('^[0-9]{1,}$', str(args.pause)): args.pause = 30
+        else: args.pause = int(args.pause)
+
+        if hasattr(args, 'uncordon') and len(str(args.uncordon)) > 0 and str(args.uncordon) == 'true': args.uncordon = True
+        else: args.uncordon = False
     return args

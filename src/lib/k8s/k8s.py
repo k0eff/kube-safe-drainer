@@ -36,19 +36,23 @@ def getAllPodsAndParents(replicaSets, statefulSets, daemonSets, deployments, pod
     plkup = ParentLookup(replicaSets, statefulSets, daemonSets, deployments)
     data = []
     for eachPod in pods.items:
-        eachPodName = eachPod.metadata.name
-        eachPodParent = eachPod.metadata.owner_references[0].name
-        eachPodParentKind = eachPod.metadata.owner_references[0].kind
-        eachPodNamespace = eachPod.metadata.namespace
+        try:
+            eachPodName = eachPod.metadata.name
+            eachPodParent = eachPod.metadata.owner_references[0].name
+            eachPodParentKind = eachPod.metadata.owner_references[0].kind
+            eachPodNamespace = eachPod.metadata.namespace
 
-        realParent = plkup.findParent(eachPodParentKind, eachPodParent, eachPodNamespace)
+            realParent = plkup.findParent(eachPodParentKind, eachPodParent, eachPodNamespace)
 
-        data.append(
-            Pod(
-                name=eachPodName, 
-                namespace=eachPodNamespace, 
-                parent=realParent)
-        )
+            data.append(
+                Pod(
+                    name=eachPodName, 
+                    namespace=eachPodNamespace, 
+                    parent=realParent)
+            )
+        except Exception as e:
+            print ('Skipping pod ' + eachPodName + ' as an error occurred: '+ e.args[0])
+            continue
     return data
 
 def filterDeploymentsOnly(podList):

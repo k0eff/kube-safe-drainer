@@ -22,8 +22,8 @@ parserUpgrade = subparsers.add_parser('upgrade', description='upgrade mode', hel
 parserUpgrade.add_argument('--subscription', help='Azure subscription')
 parserUpgrade.add_argument('-g', help='Resource group')
 
-# args = sanitizeArgs(parserMain.parse_args())
-args = parserMain.parse_args()
+args = sanitizeArgs(parserMain.parse_args())
+# args = parserMain.parse_args()
 
 
 try:
