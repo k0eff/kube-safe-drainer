@@ -1,4 +1,4 @@
-from src.controllers import drain, upgrade
+from src.controllers import drain
 
 class Controllers:
 
@@ -8,5 +8,3 @@ class Controllers:
     def drain(self, args):
         return drain.run(args)
 
-    def upgrade(self, args):
-        return upgrade.run(args)
