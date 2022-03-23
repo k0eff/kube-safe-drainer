@@ -25,3 +25,13 @@ To get additional info, just write the following in the console:
 ```python3 main.py drain -h```
 
 ```python3 main.py upgrade -h```
+
+
+# Installation
+```
+git clone https://github.com/k0eff/kube-safe-drainer
+cd kube-safe-drainer
+git checkout drainer
+chmod u+x scripts/requirements-install.sh
+python3 main.py drain --context <kube cluster context> --nodes <node1>,<node2>
+```
